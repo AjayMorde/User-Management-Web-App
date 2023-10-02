@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Submit Form</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+      /* style.css */
+
+      #user-list li {
+      margin-bottom: 10px;
+    }
+
+    #user-list li button {
+      margin-right: 10px;
+    }
+
+    #edit-user-form {
+      margin-top: 10px;
+    }
+    #user-list li {
+  margin-bottom: 10px;
+}
+
+#user-list li button {
+  margin-right: 10px;
+}
+
+#edit-user-form {
+  margin-top: 10px;
+}
+#my-form {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+}
+
+/* Style for form labels */
+label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
+}
+
+/* Style for input fields */
+input[type="text"],
+input[type="email"],
+input[type="tel"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+/* Style for submit button */
+button[type="submit"] {
+  background-color: #007bff;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+button[type="submit"]:hover {
+  background-color: #0056b3;
+}
+
+/* Style for the "Show Data" button */
+#show-button {
+  background-color: #28a745;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  margin-top: 20px;
+  cursor: pointer;
+}
+
+#show-button:hover {
+  background-color: #1e7e34;
+}
+
+/* Style for user list */
+#user-list {
+  list-style: none;
+  padding: 0;
+}
+
+/* Style for edit form container */
+#edit-form {
+  max-width: 400px;
+  margin: 20px auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+}
+/* Style for the form container */
+#my-form {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+}
+
+/* Style for form labels */
+label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
+}
+
+/* Style for input fields */
+input[type="text"],
+input[type="email"],
+input[type="tel"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+/* Style for submit button */
+button[type="submit"] {
+  background-color: #007bff;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+button[type="submit"]:hover {
+  background-color: #0056b3;
+}
+
+/* Style for the "Show Data" button */
+#show-button {
+  background-color: #28a745;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  margin-top: 20px;
+  cursor: pointer;
+}
+
+#show-button:hover {
+  background-color: #1e7e34;
+}
+
+/* Style for user list */
+#user-list {
+  list-style: none;
+  padding: 0;
+}
+
+/* Style for edit and delete buttons */
+button {
+  background-color: #dc3545;
+  color: #fff;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 5px;
+  font-size: 14px;
+  margin-right: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #c82333;
+}
+
+/* Style for the edit form container */
+#edit-form {
+  max-width: 400px;
+  margin: 20px auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+}
+
+/* Style for the edit form labels */
+#edit-user-form label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
+}
+
+
+    </style>
+</head>
+<body>
+    <form id="my-form" method="POST" action="/submit-form"> <!--Post method-->
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required> 
+        <br>
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required> 
+        <br>
+        <label for="phone">Phone Number:</label>
+        <input type="tel" id="phone" name="phone" required> 
+        <br>
+        <button type="submit">Submit</button>
+    </form>
+    <button id="show-button">Show Data</button> 
+    <button id="refresh-button">Hide Data</button>
+    <ul id="user-list"></ul>
+    <p class="mssg"></p>
+    <ul id="users"></ul>
+
+     <!-- Edit Form -->
+     <div id="edit-form" style="display: none;">
+      <h2>Edit User</h2>
+      <form id="edit-user-form">
+          <label for="edit-name">Name:</label>
+          <input type="text" id="edit-name" name="name" required>
+          <br>
+          <label for="edit-email">Email:</label>
+          <input type="email" id="edit-email" name="email" required>
+          <br>
+          <label for="edit-phone">Phone Number:</label>
+          <input type="tel" id="edit-phone" name="phone" required>
+          <br>
+          <button type="submit">Save</button>
+      </form>
+  </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+
+document.getElementById('refresh-button').addEventListener('click', () => {
+    location.reload(); // Reload the current page
+  });
+
+      // Function to create an edit form
+function createEditForm(user) {
+  const editForm = document.createElement('form');
+  editForm.id = 'edit-user-form';
+
+  const nameLabel = document.createElement('label');
+  nameLabel.textContent = 'Name:';
+  const nameInput = document.createElement('input');
+  nameInput.type = 'text';
+  nameInput.id = 'edit-name';
+  nameInput.value = user.name;  
+  nameInput.required = true;
+
+  const emailLabel = document.createElement('label');
+  emailLabel.textContent = 'Email:';
+  const emailInput = document.createElement('input');
+  emailInput.type = 'email';
+  emailInput.id = 'edit-email';
+  emailInput.value = user.email;
+  emailInput.required = true;
+
+  const phoneLabel = document.createElement('label');
+  phoneLabel.textContent = 'Phone Number:';
+  const phoneInput = document.createElement('input');
+  phoneInput.type = 'tel';
+  phoneInput.id = 'edit-phone';
+  phoneInput.value = user.phone;
+  phoneInput.required = true;
+
+  const saveButton = document.createElement('button');
+  saveButton.type = 'submit';
+  saveButton.textContent = 'Save';
+
+  editForm.appendChild(nameLabel);
+  editForm.appendChild(nameInput);
+  editForm.appendChild(document.createElement('br'));
+  editForm.appendChild(emailLabel);
+  editForm.appendChild(emailInput);
+  editForm.appendChild(document.createElement('br'));
+  editForm.appendChild(phoneLabel);
+  editForm.appendChild(phoneInput);
+  editForm.appendChild(document.createElement('br'));
+  editForm.appendChild(saveButton);
+
+  return editForm;
+}
+
+
+document.getElementById('show-button').addEventListener('click', () => {
+  axios.get('/get-users')
+    .then((response) => {
+      const userList = document.getElementById('user-list');
+      userList.innerHTML = ''; // Clear previous data
+
+      
+      response.data.forEach((user) => {
+        const listItem = document.createElement('li');
+        listItem.textContent = `Name: ${user.name}, Email: ${user.email}, Phone: ${user.phone}`;
+
+       
+        const editButton = document.createElement('button');
+        editButton.textContent = 'Edit';
+
+        
+        editButton.addEventListener('click', () => {
+          // Show the edit form
+          const editForm = createEditForm(user);
+          listItem.appendChild(editForm);
+
+          
+          editForm.addEventListener('submit', (event) => {
+            event.preventDefault(); 
+
+           
+            const editedName = document.getElementById('edit-name').value;
+            const editedEmail = document.getElementById('edit-email').value;
+            const editedPhone = document.getElementById('edit-phone').value;
+
+          
+            axios.put(`/edit-user/${user.id}`, {
+              name: editedName,
+              email: editedEmail,
+              phone: editedPhone,
+            })
+              .then((response) => {
+                // Remove the edit form after successful update
+                listItem.removeChild(editForm);
+                
+                listItem.textContent = `Name: ${editedName}, Email: ${editedEmail}, Phone: ${editedPhone}`;
+              })
+              .catch((error) => {
+                console.error('Error:', error);
+              });
+          });
+        });
+
+        
+        const deleteButton = document.createElement('button');
+        deleteButton.textContent = 'Delete';
+
+        
+        deleteButton.addEventListener('click', () => {
+          const userId = user.id; 
+
+        
+          axios.delete(`/delete-user/${userId}`)
+            .then(() => {
+          
+              userList.removeChild(listItem);
+            })
+            .catch((error) => {
+              console.error('Error:', error);
+            });
+        });
+
+        listItem.appendChild(editButton);
+        listItem.appendChild(deleteButton);
+        userList.appendChild(listItem);
+      });
+    })
+    .catch((error) => {
+      console.error('Error:', error);
+    });
+});
+
+    </script>
+</body>
+</html>
